@@ -1,7 +1,12 @@
+import React from "react";
+import Alert from "./Alert/Alert";
+
 export const App = () => {
   return (
-    <div>
-      <h1>Welcome to React</h1>
-    </div>
-  )
+    <>
+      <Alert>Please update your email!</Alert>
+      <Alert>There was an error during transaction!</Alert>
+      <Alert>Payment received, thank you for your purchase!</Alert>
+    </>
+  );
 }
