@@ -1,4 +1,5 @@
 import React from "react";
+import "./Alert.css";
 
 const alertStyles = {
   margin: 8,
@@ -23,12 +24,9 @@ const getBgColor = variant => {
 };
 
 const Alert = ({variant, children}) => {
-  return  <p
-  style={{
-    ...alertStyles,
-    backgroundColor: getBgColor(variant),
-  }}
->
+const classNames = ["alert", variant];
+
+  return  <p className={classNames.join(" ")}>
   {children}
 </p>
 }
