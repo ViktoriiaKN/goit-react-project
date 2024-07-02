@@ -1,14 +1,13 @@
-import { useState } from "react"
 
-const ClickCounter = () => {
-const [clicks, setClicks] = useState(0);
+const ClickCounter = ({value, onUpdate}) => {
 
-const handleClick = () => {
-  setClicks(clicks + 1);
-};
 
-  return <button onClick={handleClick}>Current: {clicks}</button>
+
+  return <button onClick={onUpdate}>Current: {value}</button>
   
 };
 
 export default ClickCounter
+
+
+/* Читабельність коду: Назви value та onUpdate - це пропси і є досить інтуїтивними і легко зрозумілими. value явно вказує, що це значення, яке передається для відображення, а onUpdate вказує на функцію, яка буде викликана для оновлення цього значення. Передача пропсів value та onUpdate дозволяє компонентам залишатися чистими та функціональними, отримуючи необхідні дані та функції з батьківського компонента. */
