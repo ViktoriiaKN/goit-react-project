@@ -26,7 +26,7 @@
 import { useState } from "react";
 
 export const App = () => {
- const [ clicks , setClicks] = useState(0);
+ const [ clicks , setClicks] = useState(0); /* Це деструктуризація масиву і повертається масив */
 
   const handleClick = () => {
     setClicks(clicks + 1);
