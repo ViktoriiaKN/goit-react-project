@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState} from 'react';
+import Modal from './Modal/Modal';
 
 export const App = () => {
-  const [clicks, setClicks] = useState(0);
-
-	useEffect(() => {
-		console.log("You can see me only once!");
-	}, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
-     
-
-      <button onClick={() => setClicks(clicks + 1)}>You cklicked {clicks} times</button>
-     
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? "Close" : "Open"}
+      </button>
+      {isOpen && <Modal/>}
     </div>
   );
 };
