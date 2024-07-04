@@ -1,22 +1,18 @@
-import { useState } from "react"
-import ClickCounter from "./ClickCounter/ClickCounter"
+import { useEffect, useState } from 'react';
 
 export const App = () => {
-const [clicks, setClicks] = useState(0);
+  const [clicks, setClicks] = useState(0);
 
-const handleClick = () => {
-  setClicks(clicks + 1);
-};
+	useEffect(() => {
+		console.log("You can see me only once!");
+	}, []);
 
   return (
-    <>
-    <ClickCounter value={clicks} onUpdate={handleClick}/>
-    <ClickCounter value={clicks} onUpdate={handleClick}/>
-    </>
-  )
-}
+    <div>
+     
 
-export default App
-/* 
-Зверніть увагу на те, як компонент App нічого не знає про стан ClickCounter. На відміну від props, стан є повністю приватним для компонента, що його визначає. Батьківський компонент не може його змінити. Це дозволяє додавати стан до будь-якого компонента чи видаляти його без впливу на решту компонентів.
- */
+      <button onClick={() => setClicks(clicks + 1)}>You cklicked {clicks} times</button>
+     
+    </div>
+  );
+};
