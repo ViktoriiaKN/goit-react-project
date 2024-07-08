@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import Modal from './Modal/Modal';
+import LoginForm from './LoginForm/LoginForm';
 
 export const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,10 +14,7 @@ export const App = () => {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? "Close" : "Open"}
-      </button>
-      {isOpen && <Modal/>}
+     <LoginForm/>
     </div>
   );
 };
