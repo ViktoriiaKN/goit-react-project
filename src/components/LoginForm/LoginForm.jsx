@@ -1,15 +1,15 @@
 
-const LoginForm = () => {
+const LoginForm = ({onLogin}) => {
 const handleSubmit = (evt) => {
   evt.preventDefault();
 
   const form = evt.target;
   const {login, password} = form.elements;
 
-  console.log(login, password);
-
-  console.log(login.value, password.value);
-
+onLogin({
+  login: login.value,
+  password: password.value,
+})
   form.reset();
 }
 
@@ -17,7 +17,7 @@ const handleSubmit = (evt) => {
     <form onSubmit={handleSubmit}>
       <input type="text" name="login" />
       <input type="password" name="password" />
-      <button type="submit">Log in</button>
+      <button type="submit">Login</button>
     </form>
   )
 };
