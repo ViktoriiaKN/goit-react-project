@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.btn {
+  background-color: blueviolet;
+  font-weight: 400;
+  border-radius: 10px;
+  align-items: center;
+}
