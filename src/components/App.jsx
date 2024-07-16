@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ArticleList from './ArticleList/ArticleList';
+import { fetchArticlesWithTopic } from '../article-api';
 
 export const App = () => {
   const [articles, setArticles] = useState([]);
@@ -10,18 +11,15 @@ export const App = () => {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        // 1. Встановлюємо індикатор в true перед запитом
         setLoading(true); 
-        const response = await axios.get(
-          'https://hn.algolia.com/api/v1/search?query=react'
-        );
+        // 2. Використовуємо HTTP-функцію
+        const data = await fetchArticlesWithTopic('react');
         setArticles(
-          response.data.hits
+         data
         );
       } catch(error) {
 setError(true);
       } finally {
-        // 2. Встановлюємо індикатор в false після запиту
         setLoading(false)
       }
     }
@@ -38,4 +36,6 @@ setError(true);
   );
 };
 
+/* Зберігати код, пов'язаний з HTTP-запитом, безпосередньо в компоненті - не найкраща практика. У застосунку буде багато різних запитів до бекенду, можливо навіть до декількох різних бекендів, і вони будуть використовуватися в різних компонентах. До того ж код HTTP-запитів може бути складним та громіздким.
 
+ */
