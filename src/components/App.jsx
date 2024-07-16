@@ -4,18 +4,25 @@ import ArticleList from './ArticleList/ArticleList';
 
 export const App = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await axios.get(
-        'https://hn.algolia.com/api/v1/search?query=react'
-      );
-      setArticles(
-        response.data.hits
-      ); /* response: об'єкт, що повертається у відповідь на HTTP-запит, зроблений за допомогою axios.
-response.data: містить дані, які повернув сервер.
-response.data.hits: це масив статей, отриманих з відповіді API.
-setArticles(response.data.hits) оновлює стан articles новим масивом статей, отриманих з API. Це призводить до повторного рендеру компонента з оновленими даними. */
+      try {
+        // 1. Встановлюємо індикатор в true перед запитом
+        setLoading(true); 
+        const response = await axios.get(
+          'https://hn.algolia.com/api/v1/search?query=react'
+        );
+        setArticles(
+          response.data.hits
+        );
+      } catch(error) {
+
+      } finally {
+        // 2. Встановлюємо індикатор в false після запиту
+        setLoading(false)
+      }
     }
     fetchArticles();
   }, []);
@@ -23,9 +30,10 @@ setArticles(response.data.hits) оновлює стан articles новим ма
   return (
     <div>
       <h1>Latest articles</h1>
-      {articles.length > 0 && <ArticleList articles={articles}/>}
+      {loading && <p>Loading data, please wait</p>}
+      {articles.length > 0 && <ArticleList articles={articles} />}
     </div>
   );
 };
 
-/* Зверніть увагу, що умовний рендерінг відбувається в батьківському компоненті App. Компонент ArticleList не знає, коли рендерити розмітку, це завдання компонента, в якому він використовується. Компонент ArticleList або рендериться, або ні, і це вирішує компонент App. */
+
