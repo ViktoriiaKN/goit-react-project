@@ -1,13 +1,15 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import ArticleList from './ArticleList/ArticleList';
 import { fetchArticlesWithTopic } from '../article-api';
 import SearchForm from './SearchForm/SearchForm';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  
+  const value = useSelector(state => state.some.value);
 
   /* Оскільки тепер користувач сам вводить рядок для пошуку статей, нам не потрібний ефект. Таким чином, будемо писати код всередині функції handleSearch, яка виконується при сабміті форми. Робимо її асинхронною і додаємо всередину код, пов'язаний з HTTP-запитом.
 
